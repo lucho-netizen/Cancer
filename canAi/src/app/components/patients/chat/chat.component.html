@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chatbot</title>
+</head>
+<body>
+  <h1>Chatbot</h1>
+  
+  <div>
+    <label for="message">Mensaje:</label>
+    <input type="text" id="message" name="message">
+    <button onclick="sendMessage()">Enviar</button>
+  </div>
+
+  <div id="response"></div>
+
+  <script>
+    function sendMessage() {
+      const message = document.getElementById('message').value;
+      const url = 'ws://127.0.0.1:8000/chat'; // Reemplaza con tu URL de backend
+
+      const ws = new WebSocket(url);
+
+      ws.onopen = function() {
+        console.log('WebSocket conectado');
+        ws.send(message);
+      };
+
+      ws.onmessage = function(event) {
+        console.log('Mensaje recibido:', event.data);
+        document.getElementById('response').innerText = 'Respuesta: ' + event.data;
+      };
+
+      ws.onclose = function() {
+        console.log('WebSocket desconectado');
+      };
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+/* dashboardadmin.css */
+.admin-dashboard {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.menu button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 6px 70px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.menu button:hover {
+    background-color: #0056b3;
+}
+
+.container-fluid {
+    /* background-color: #f8f9fa; */
+    padding: 10px;
+    border-radius: 5px;
+    width: 1500px;
+    height: 700px;
+    font-size: 0.9rem;
+    margin-left: 500px;
+    /* margin-right: 10px; */
+
+}
+
+.add-user-form,
+.user-table,
+.other-action {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

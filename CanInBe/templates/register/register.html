@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Sign Up</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="../../static/css/register/style.css" />
+<link rel="stylesheet" href="../../static/css/register/style_2.css" />
+
+
+<style>
+  @font-face {
+    font-family: "Linearicons-Free";
+    src: url("../../static/css/fonts/Linearicons-Free.woff2");
+  }
+
+  @font-face {
+      font-family: "Muli-SemiBold";
+      src: url("../../static/css/muli/Muli-SemiBold.ttf");
+    }
+</style>
+
+<body>
+<div class="wrapper">
+<div class="inner">
+  <img src="../../static/css/images/img.png" alt="" class="image-1">
+
+ <form action="http://127.0.0.1:8000/register" method="post" enctype="multipart/form-data"> 
+<h3>Reg&iacute;strese</h3>
+<div class="form-holder">
+  <span class="lnr lnr-user"></span>
+  <input type="text" class="form-control" placeholder="nombre" name="nombre" id="nombre" required />
+</div>
+<div class="form-holder">
+  <span class="lnr lnr-users"></span>
+  <input type="text" class="form-control" placeholder="apellido" name="apellido" id="apellido" required />
+</div>
+
+<div class="form-holder">
+  <span class="lnr lnr-indent-decrease"></span>
+  <select name="tipo_documento" id="tipo_documento" style="margin-left:50px; border-left: var(--size) solid transparent;
+  border-right: var(--size) solid transparent;
+  border-top: var(--size) solid black; ">
+    <option value="CC" name="CC">Cedula de Ciudadania</option>
+    <option value="TI" name="TI">Tarjeta de Identidad</option>
+  </select>
+</div>
+
+
+<div class="form-holder">
+<span class="lnr lnr-phone"></span>
+<input type="number" class="form-control" placeholder="Phone Number" name="celular" name="celular">
+</div>
+
+<div class="form-holder">
+<span class="lnr lnr-file-add"></span>
+<input type="number" class="form-control" placeholder="identificacion" name="identificacion" id="identificacion">
+</div>
+
+
+<div class="form-holder">
+  <span class="lnr lnr-smile"></span>
+  <input type="number" class="form-control" placeholder="Edad" name="edad" id="edad">
+  </div>
+
+
+  <div class="form-holder">
+  <span class="lnr lnr-heart"></span>
+  <input type="number" class="form-control" placeholder="Peso" name="peso" id="peso">
+  </div>
+  
+<div class="form-holder">
+<span class="lnr lnr-envelope"></span>
+<input type="email" class="form-control" placeholder="Correo"  name="correo"  id="correo" required />
+</div>
+
+
+<div class="form-holder">
+<span class="lnr lnr-lock"></span>
+<input type="password" class="form-control" placeholder="Contraseña"  id="password" name="password" required />
+</div>
+
+
+<div class="form-holder">
+<span class="lnr lnr-lock"></span>
+<input type="password" class="form-control" placeholder="Confirma Contraseña" id="confirmPassword" required />
+</div>
+<span id="passwordMatchMessage"></span> <!-- Para mostrar el mensaje de coincidencia de contraseñas -->
+<br>
+<span id="passwordStrengthMessage"></span> <!-- Para mostrar el mensaje de fortaleza de contraseña -->
+
+        <center><input type="submit" value="submit" /></center>
+
+        <div>
+          <br />
+          <p>A&uacute;n no est&aacute;s registrada?</p>
+          <a href="/login_user/" target="_blank">No</a>
+        </div>
+</form>
+
+<img src="../../static/css/images/image-2.png" alt="" class="image-2">
+</div>
+</div>
+<script>
+  // Obtén los elementos relevantes
+  var password = document.getElementById("password");
+  var confirmPassword = document.getElementById("confirmPassword");
+  var passwordMatchMessage = document.getElementById("passwordMatchMessage");
+  var passwordStrengthMessage = document.getElementById("passwordStrengthMessage");
+
+
+    // Función para validar la fortaleza de la contraseña
+    function validatePasswordStrength(password) {
+    var hasNumber = /\d/.test(password);
+    var hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+    return hasNumber && hasSpecialChar;
+  }
+
+  // Agrega un evento onblur al campo de confirmación de contraseña
+  confirmPassword.onblur = function() {
+    if (password.value === confirmPassword.value) {
+      passwordMatchMessage.innerText = "Las contraseñas coinciden";
+      passwordMatchMessage.style.color = "green";
+    } else {
+      passwordMatchMessage.innerText = "Las contraseñas no coinciden";
+      passwordMatchMessage.style.color = "red";
+    }
+    if (validatePasswordStrength(password.value)) {
+      passwordStrengthMessage.innerText = "La contraseña es fuerte";
+      passwordStrengthMessage.style.color = "green";
+    } else {
+      passwordStrengthMessage.innerText = "La contraseña debe contener números y caracteres especiales";
+      passwordStrengthMessage.style.color = "red";
+    }
+  };
+</script>
+
+
+
+
+</body>
+</html>

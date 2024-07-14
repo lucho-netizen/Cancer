@@ -1,0 +1,86 @@
+
+.lnr {
+    font-family: 'Linearicons-Free';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.lnr-home:before {
+    content: "\e800";
+}
+
+.lnr-apartment:before {
+    content: "\e801";
+}
+
+.lnr-pencil:before {
+    content: "\e802";
+}
+
+.lnr-magic-wand:before {
+    content: "\e803";
+}
+
+.lnr-drop:before {
+    content: "\e804";
+}
+
+.lnr-lighter:before {
+    content: "\e805";
+}
+
+.lnr-poop:before {
+    content: "\e806";
+}
+
+.lnr-sun:before {
+    content: "\e807";
+}
+
+.lnr-moon:before {
+    content: "\e808";
+}
+
+.lnr-cloud:before {
+    content: "\e809";
+}
+
+.lnr-cloud-upload:before {
+    content: "\e80a";
+}
+
+.lnr-cloud-download:before {
+    content: "\e80b";
+}
+
+.lnr-cloud-sync:before {
+    content: "\e80c";
+}
+
+.lnr-cloud-check:before {
+    content: "\e80d";
+}
+
+.lnr-database:before {
+    content: "\e80e";
+}
+
+.lnr-lock:before {
+    content: "\e80f";
+}
+
+.lnr-user:before {
+    content: "\e82a";
+}
+
+.lnr-users:before {
+    content: "\e82b";
+}

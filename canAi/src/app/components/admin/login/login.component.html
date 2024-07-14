@@ -1,0 +1,59 @@
+<div class="wrapper">
+  <div class="inner">
+    <img class="image-1" src="./../assets/imagenes/img.png" alt="Image 1" />
+
+    <form (ngSubmit)="onSubmit()">
+      <h3>Iniciar sesión</h3>
+      <br />
+      <div class="form-holder">
+        <span class="lnr lnr-user"></span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="email"
+          name="email"
+          placeholder="Correo"
+          required
+        />
+      </div>
+
+      <div class="form-holder">
+        <span class="lnr lnr-lock"></span>
+        <input
+          type="password"
+          class="form-control"
+          [(ngModel)]="password"
+          name="password"
+          id="password"
+          placeholder="Contraseña"
+          required
+        />
+      </div>
+
+      <br>
+      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+      <br>
+      <div *ngIf="loginMessage" class="succes-message" style="text-align: center;">
+        {{ loginMessage }}
+      </div>
+      <button type="submit">Enviar</button>
+      
+
+      <br /><br />
+
+      <div>
+        <a routerLink="/adduser">
+          <p>Aún no estás registrado?</p>
+        </a>
+
+        <a routerLink="/login" target="_blank">
+          <p>¿Eres un usuario?</p>
+        </a>
+      </div>
+    </form>
+
+    <img src="./../assets/imagenes/image-2.png" alt="Image 2" class="image-2" />
+  </div>
+</div>
+
+<router-outlet></router-outlet>

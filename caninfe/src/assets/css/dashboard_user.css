@@ -1,0 +1,182 @@
+body {
+    font-family: 'Arial';
+  
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  /* Footer */
+  footer {
+    background-color: #accffe;
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+  }
+  
+  footer p {
+    margin: 0;
+  }
+  
+  footer a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  footer a:hover {
+    color: #0c0b0b;
+  }
+  
+  .footer-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .footer-social-icons {
+    margin-top: 20px;
+  }
+  
+  .footer-social-icons a {
+    display: inline-block;
+    margin-right: 10px;
+    color: #ffffff;
+    font-size: 20px;
+  }
+  
+  h1 {
+    color: #333333;
+    text-align: center;
+    padding: 20px 0;
+  }
+  
+  p {
+    color: #666666;
+    text-align: center;
+    margin-bottom: 30px;
+    text-align: justify;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  @media (max-width: 768px) {
+  
+    /* Estilos para pantallas pequeñas (responsive) */
+    p {
+      font-size: 14px;
+      /* Ajusta el tamaño de fuente para pantallas pequeñas */
+    }
+  }
+  
+  h2 {
+    color: #333333;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  p.definition {
+    color: #666666;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 20%;
+    margin-bottom: 10px;
+  }
+  
+  a {
+    color: #333333;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  a:hover {
+    color: #accffe;
+  }
+  
+  .cards-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    align-items: stretch;
+  }
+  
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Alinea los elementos al centro */
+    margin: 20px;
+    width: 300px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  .menu {
+    list-style: none;
+    padding: 0;
+    background-color: #accffe;
+    width: 100%;
+    /* Cambiado a 100% para que abarque toda la pantalla */
+    margin: 0;
+    /* Eliminado el margen para que el menú esté pegado a los bordes */
+    position: fixed;
+    /* Fijar el menú en la parte superior */
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    /* Asegura que el menú esté por encima de otros elementos */
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+  
+  .menu li a {
+    text-decoration: none;
+    color: white;
+    padding: 20px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    /* Asegura que el padding no afecte el ancho total */
+  }
+  
+  .menu li {
+    display: inline-block;
+    text-align: center;
+  }
+  
+  .menu li a:hover {
+    background: #accffe;
+  }
+  
+  @media (max-width: 768px) {
+  
+    /* Estilos para pantallas pequeñas (responsive) */
+    .menu {
+      text-align: center;
+      /* Centra los elementos en pantallas pequeñas */
+    }
+  
+    .menu li {
+      display: block;
+      width: 100%;
+    }
+  }
