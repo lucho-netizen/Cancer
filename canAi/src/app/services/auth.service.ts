@@ -11,12 +11,11 @@ import { tap } from 'rxjs/operators';
   export class AuthService {
 
     private TOKETN_KEY = '%TGBNME.9';
-    private ROLE_KEY = 'userRole';
-
-    private apiUrl = 'http://127.0.0.1:5000'; // Ajusta la URL del backend según tu configuración
+    private apiUrl = 'http://127.0.0.1:5000/api'; // Ajusta la URL del backend según tu configuración
+    
 
     private loggedIn$ = new BehaviorSubject<boolean>(this.isLoggedIn());
-    private userRole$ = new BehaviorSubject<'admin' | 'user' | null>(this.getRole());
+    
 
     constructor(
       private http: HttpClient,
@@ -27,10 +26,8 @@ import { tap } from 'rxjs/operators';
       return this.http.post<any>(`${this.apiUrl}/login`, { correo: email, password: password }).pipe(
         tap(response => {
           this.setToken(response.token);
-          this.setRole(response.role);
           this.loggedIn$.next(true);
-          this.userRole$.next(response.user_role);
-        })
+          })
       );
     }
     //Add user
@@ -70,15 +67,7 @@ import { tap } from 'rxjs/operators';
       localStorage.setItem(this.TOKETN_KEY, token);
     }
 
-    getRole(): 'admin' | 'user' | null {
-      return localStorage.getItem(this.ROLE_KEY) as 'admin' | 'user' | null;
-    }
-
-    setRole(role: 'admin' | 'user'): void {
-      localStorage.setItem(this.ROLE_KEY, role);
-    }
-
-
+    
     isLoggedIn(): boolean {
       //this.isLoggedIn$.asObservable(); //Si algo eliminar esta línea.
       return this.getToken() !== null;
@@ -88,17 +77,10 @@ import { tap } from 'rxjs/operators';
       return this.loggedIn$.asObservable();
     }
 
-    getUserRole(): Observable<'admin' | 'user'| null> {
-      return this.userRole$.asObservable();
-    }
-
-
+    
     logout(): void {
       localStorage.removeItem(this.TOKETN_KEY);
-      localStorage.removeItem(this.ROLE_KEY);
-      this.loggedIn$.next(false);
-      this.userRole$.next(null);
-      this.router.navigate(['/login']);
+         this.router.navigate(['/login']);
 
     }
 

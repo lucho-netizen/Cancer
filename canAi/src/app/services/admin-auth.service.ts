@@ -10,7 +10,7 @@ export class AdminAuthService {
 
   private TOKETN_KEY = '%TGBNME.9.S$';
 
-  private adminApiUrl = 'http://127.0.0.1:5000'; // URL específica para el admin
+  private adminApiUrl = 'http://127.0.0.1:5000/apia'; // URL específica para el admin
 
   constructor(
     private http: HttpClient,

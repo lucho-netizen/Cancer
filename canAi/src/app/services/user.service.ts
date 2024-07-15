@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -8,12 +8,13 @@ import { Observable } from 'rxjs';
 export class UserService {
 
   private Urls = 'htpp://127.0.0.1:5000';
+  private UrlsOuth = 'http://127.0.0.1:5000' //from google
 
 
   constructor(private http:HttpClient) { }
 
   login(email: string, password: string) {
-    return this.http.post<any>(`${this.Urls}/login`, {correo: email, password: password});
+    return this.http.post<any>(`${this.Urls}/api/login`, {correo: email, password: password});
     }
 
     addUser(
@@ -41,5 +42,12 @@ export class UserService {
           id_role: id_role, 
           estado: estado
         });
+      }
+
+      createUser(email: string, name: string, googleId: string): Observable<any> {
+        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        const body = { email, name, googleId };
+  
+        return this.http.post<any>(`${this.UrlsOuth}/api/users/google`, body, { headers });
       }
 }

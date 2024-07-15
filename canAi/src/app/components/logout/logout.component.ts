@@ -34,6 +34,6 @@ export class LogoutComponent implements OnInit {
 
   logoutAdmin(): void {
     this.adminAuthService.logoutAdmin();
-    this.router.navigate(['/admin']);
+    this.router.navigate(['/loginadmin']);
   }
 }

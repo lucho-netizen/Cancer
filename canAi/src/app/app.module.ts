@@ -26,6 +26,15 @@ import { AdminNavComponent } from './components/admin/nav/nav.component';
 import { PatientService } from './services/patient/patient.service';
 
 
+//Google Oauth
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import { GoogleLoginProvider } from 'angularx-social-login';
+import { ChatComponent } from './components/patients/chat/chat.component';
+import { AdminReportComponent } from './components/admin/dashboard/reports/reports.component';
+import { AdminTreatmentsComponent } from './components/admin/dashboard/treatments/treatments.component';
+import { AdminTestsComponent } from './components/admin/dashboard/tests/tests.component';
+
+
 
 
 @NgModule({
@@ -41,7 +50,13 @@ import { PatientService } from './services/patient/patient.service';
     DashboardComponent,
     AdminDashboardComponent,
     AdminPatientsComponent,
-    AdminNavComponent
+    AdminNavComponent,
+    ChatComponent,
+    AdminReportComponent,
+    AdminPatientsComponent,
+    AdminTreatmentsComponent,
+    AdminTestsComponent
+    
     
 
   ],
@@ -53,11 +68,12 @@ import { PatientService } from './services/patient/patient.service';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    SocialLoginModule,
     RouterModule.forRoot([
       { path: 'index', component: AppComponent },
       { path: 'login', component: LoginComponent },
       { path: 'adduser', component: AdduserComponent },  // Asegúrate de tener estos componentes
-      { path: 'admin', component: LoginAdminComponent },  // Asegúrate de tener estos componentes
+      { path: 'loginadmin', component: LoginAdminComponent },  // Asegúrate de tener estos componentes
       { path: 'dashboard', component: DashboardComponent },  // Ruta de redirección después del login exitoso
       { path: 'dashboardadmin', component: AdminDashboardComponent},
       { path: '', redirectTo: '/index', pathMatch: 'full' }
@@ -69,9 +85,20 @@ import { PatientService } from './services/patient/patient.service';
   bootstrap: [AppComponent, AdminPatientsComponent],
 
   providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider('YOUR_GOOGLE_CLIENT_ID')
+          }
+        ]
+      } as SocialAuthServiceConfig,
+    },
     provideAnimationsAsync(),
     PatientService
-  
   ]
   
 })

@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class PatientService {
 
-  private Urls = 'http://127.0.0.1:5000/patients';
+  private Urls = 'http://127.0.0.1:5000/apia/patients';
 
    constructor(
     private http: HttpClient

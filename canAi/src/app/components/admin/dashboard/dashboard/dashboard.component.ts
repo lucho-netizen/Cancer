@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AdminNavComponent } from '../../nav/nav.component';
 
 @Component({
   selector: 'app-dashboard',

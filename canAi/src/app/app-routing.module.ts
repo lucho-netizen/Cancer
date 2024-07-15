@@ -40,6 +40,8 @@ const routes: Routes = [
   { path: 'dashboardadmin', component: AdminDashboardComponent, canActivate: [AdminAuthGuard], data: { title: 'Dashboard' } },
   { path: 'adminpatients', component: AdminPatientsComponent },
   { path: 'navadmin', component: AdminNavComponent },
+  { path: 'adminreports', component: AdminReportComponent },
+  { path: 'patients', component: AdminPatientsComponent },
 
   { path: '**', component: AppComponent }
 
