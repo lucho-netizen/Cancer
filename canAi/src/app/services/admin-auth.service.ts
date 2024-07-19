@@ -18,26 +18,24 @@ export class AdminAuthService {
     ) { }
 
   
-  // loginAdmin(email: string, password: string) {
-  //   return this.http.post<any>(`${this.adminApiUrl}/loginadmin`, { correo: email, password: password });
-  // }
-
-
-  loginAdmin(email: string, password: string) {
+    loginAdmin(email: string, password: string) {
     return this.http.post<any>(`${this.adminApiUrl}/loginadmin`, { correo: email, password: password })
     .pipe(
       tap(response => {
         if(response && response.token){
           this.setTokenAdmin(response.token);
-          this.router.navigate(['/dashboardadmin'])
+          // this.router.navigate(['/dashboardadmin'])
         }
       }),
       catchError((error)=> {
         if (error.status === 403){
           return throwError('Acceso Denegado!')
 
+        } else if 
+           (error.status === 404){
+          return throwError('Users no found');
         }
-        return throwError('Error al iniciar sesión!');
+          return throwError('Error al iniciar sesión!');
       })
     );
   }

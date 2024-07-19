@@ -4,7 +4,7 @@ const Admin = require("../../models/admin/admin");
 
 exports.loginAdmin = (req, res) => {
     const { correo, password } = req.body;
-    Admin.findByEmail(correo, password, (err, user) => {
+    Admin.findByEmailAdmin(correo, password, (err, user) => {
       if (err) {
         console.error("Error en el servidor:", err);
         return res.status(500).json({ message: "Error en el servidor" });
@@ -13,7 +13,7 @@ exports.loginAdmin = (req, res) => {
         return res.status(404).json({ message: "Usuario no encontrado" });
       }
       // Verificar si es administrador
-      if (user.id_role !== 2) {
+      if (user.id_role === 1) {
         return res.status(403).json({ message: "Acceso no autorizado" });
       }
       // Generar token JWT para administrador

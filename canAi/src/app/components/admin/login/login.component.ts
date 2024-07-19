@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminService } from '../../../services/admin.service';
 import { Router } from '@angular/router';
 import { AdminAuthService } from '../../../services/admin-auth.service';
 
@@ -9,7 +8,7 @@ import { AdminAuthService } from '../../../services/admin-auth.service';
   templateUrl: './login.component.html',
   styleUrl: '../../../../assets/css/login.css'
 })
-export class LoginAdminComponent {
+export class LoginAdminComponent implements OnInit {
   email: string = '';
   password: string = '';
   errorMessage: string = '';
@@ -18,9 +17,13 @@ export class LoginAdminComponent {
 
   constructor(
     private AdminauthService: AdminAuthService,
-    private AdminService: AdminService,
-    private router: Router
+     private router: Router
   ) { }
+  
+  // Este método es necesario para implementar OnInit en Angular
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
  
   onSubmit(): void {
@@ -37,15 +40,12 @@ export class LoginAdminComponent {
             }
           },
           (error) => {
-            if (error === 'Acceso Denegado!') {
-              this.errorMessage = 'Acceso Denegado!'; // Mensaje de error si el usuario no tiene permisos de administrador
-            }
-            else if (error.status === 404) {
-              this.errorMessage = 'Users no found';
+            if (error.status === 403) {
+              this.errorMessage = 'Acceso no autorizado';
+            } if (error.status === 404) {
+              this.errorMessage = 'Usuario no encontrado';
             } else {
-
-              this.router.navigate(['/admin'])
-              this.errorMessage = 'Error en el servidor. Por favor, inténtelo de nuevo más tarde.'; // Manejo de errores HTTP
+              this.errorMessage = 'Error al iniciar sesión';
             }
           }
         );
