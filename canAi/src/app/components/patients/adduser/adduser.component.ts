@@ -26,7 +26,7 @@ export class AdduserComponent  implements OnInit{
       nombre: ['', Validators.required],
       apellido: [''],
       tipo_documento: [''],
-      phone_number: ['', Validators.required],
+      celular: ['', Validators.required],
       identificacion: [''],
       edad: [''],
       peso: [''],
@@ -52,14 +52,14 @@ export class AdduserComponent  implements OnInit{
 
     onSubmit(): void {
       if (this.addUserForm.valid) {
-        const { nombre, apellido, tipo_documento, phone_number, identification, email, edad, peso, password, id_role, estado } = this.addUserForm.value;
+        const { nombre, apellido, tipo_documento, celular, identificacion, edad, peso, correo, password, id_role, estado } = this.addUserForm.value;
         this.authService.addUser(
           nombre,
           apellido,
           tipo_documento,
-          phone_number,
-          identification,
-          email,
+          celular,
+          identificacion,
+          correo,
           edad,
           peso,
           password,
