@@ -10,14 +10,7 @@ class Admin {
    * @param {string} password
    * @param {function} callback
    */
-      // static findByEmail(email, password, callback) {
-      //   const sql = "SELECT * FROM usuario WHERE correo =? and password =? AND id_role = 2";
-      //   const values = [email, password]
-      //   mysqlConnection.query(sql, values, (err, result) => {
-      //     if (err) return callback(err, null);
-      //     callback(null, result[0]);
-      //   });
-      // }
+      
 
       static findByEmailAdmin(email, password, callback) {
         const sql = "SELECT * FROM usuario WHERE correo = ? and password = ?";

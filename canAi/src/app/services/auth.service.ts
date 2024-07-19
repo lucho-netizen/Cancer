@@ -50,12 +50,13 @@ import { tap } from 'rxjs/operators';
       peso: number,
       password: string,
       id_role: number,
-      estado: number) {
-      return this.http.post<any>(`${this.apiUrl}/api/adduser`, {
+      estado: number
+    ): Observable<any> {
+      return this.http.post<any>(`${this.apiUrl}/adduser`, {
         nombre: nombre,
         apellido: apellido,
         tipo_documento: tipo_documento,
-        celular: phone_number,
+        phone_number: phone_number,
         identificacion: identification,
         edad: edad,
         peso: peso,

@@ -1,5 +1,4 @@
 const mysqlConnection = require("../db/db");
-const sqlstring = require("sqlstring");
 
 
 class User {
@@ -28,6 +27,20 @@ class User {
     });
   }
 
+  static createUser(user, callback) {
+    const sql = `
+      INSERT INTO usuario (nombre, apellido, tipo_documento, celular, identificacion, edad, peso, correo, password, id_role, fecha, estado) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+    const values = [
+      user.nombre, user.apellido, user.tipo_documento, user.celular, user.identificacion,
+      user.edad, user.peso, user.correo, user.password, user.id_role, user.fecha, user.estado
+    ];
+
+    mysqlConnection.query(sql, values, (err, result) => {
+      if (err) return callback(err, null);
+      callback(null, result);
+    });
+  }
   
 }
 

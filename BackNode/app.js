@@ -3,7 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const mysqlConnection = require("./db/db"); // Importar la conexión a la base de datos
-const UserRoutes = require('./routes/userRoutes');
+const userRoutes = require('./routes/userRoutes');
 const AdminRoutes = require('./routes/admin/adminRoutes');
 
 
@@ -13,7 +13,7 @@ app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/api', UserRoutes);
+app.use('/api', userRoutes);
 app.use('/apia', AdminRoutes);
 
 
