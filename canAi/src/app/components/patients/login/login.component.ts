@@ -14,17 +14,19 @@ import { SocialAuthService, GoogleLoginProvider, SocialUser } from 'angularx-soc
   templateUrl: './login.component.html',
   styleUrl: '../../../../assets/css/login.css'
 })
+
 export class LoginComponent implements OnInit { 
 
   email: string = '';
   password: string = '';
   errorMessage: string = '';
   user: SocialUser | undefined;
+  loggedIn: boolean | undefined = false;
 
   constructor(
     private authService: AuthService,
     private userService: UserService,
-    private GoogleSerive: SocialAuthService,
+    private GogoogleAuthService: SocialAuthService,
     private router: Router,
     private titleService: Title
   ) { }
@@ -40,8 +42,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.GoogleSerive.authState.subscribe((user) => {
+    this.GogoogleAuthService.authState.subscribe((user) => {
       this.user = user;
+      this.loggedIn = (user != null);
       console.log(this.user)
     });
   }
@@ -68,24 +71,32 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  signInWithGoogle():void {
-    this.GoogleSerive.signIn(GoogleLoginProvider.PROVIDER_ID)
-     .then((user) => {
-        console.log('Google Sign-in success', user);
-        this.userService.createUser(user.email, user.name, user.id)
-         .subscribe(
-            (response: any) => {
-              console.log('Usuario creado con éxito:', response);
-              this.authService.setToken(response.token); // Guarda el token utilizando AuthService
-              this.router.navigate(['/dashboard']); // Redirige al dashboard después del login exitoso
-            },
-            (error: any) => {
-              console.error('Error en el registro:', error);
-              this.errorMessage = 'Error en el servidor. Por favor, inténtelo de nuevo más tarde.'; // Manejo de errores HTTP
-            }
-          );
-      })
-     .catch((error) => console.error('Google Sign-in errror', error));
+  // signInWithGoogle():void {
+  //   this.GoogleSerive.signIn(GoogleLoginProvider.PROVIDER_ID)
+  //    .then((user) => {
+  //       console.log('Google Sign-in success', user);
+  //       this.userService.createUser(user.email, user.name, user.id)
+  //        .subscribe(
+  //           (response: any) => {
+  //             console.log('Usuario creado con éxito:', response);
+  //             this.authService.setToken(response.token); // Guarda el token utilizando AuthService
+  //             this.router.navigate(['/dashboard']); // Redirige al dashboard después del login exitoso
+  //           },
+  //           (error: any) => {
+  //             console.error('Error en el registro:', error);
+  //             this.errorMessage = 'Error en el servidor. Por favor, inténtelo de nuevo más tarde.'; // Manejo de errores HTTP
+  //           }
+  //         );
+  //     })
+  //    .catch((error) => console.error('Google Sign-in errror', error));
+  // }
+
+  
+  signInWithGoogle(): void {
+    this.GogoogleAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).catch((error) => {
+      console.error('Google Sign-in error', error);
+    });
   }
+
 
 }

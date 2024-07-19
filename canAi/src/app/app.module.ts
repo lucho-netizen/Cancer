@@ -92,7 +92,9 @@ import { AdminTestsComponent } from './components/admin/dashboard/tests/tests.co
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider('YOUR_GOOGLE_CLIENT_ID')
+            provider: new GoogleLoginProvider(
+              '236412742841-kb5urirqrtgs16j06m7sifcrgqu8psbf.apps.googleusercontent.com'
+            )
           }
         ]
       } as SocialAuthServiceConfig,
