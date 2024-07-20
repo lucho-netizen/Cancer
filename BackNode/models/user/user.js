@@ -1,8 +1,20 @@
-const mysqlConnection = require("../db/db");
-
+const mysqlConnection = require("../../db/db");
 
 class User {
-  constructor(nombre, apellido, tipo_documento, celular, identificacion, edad, peso, correo, password, id_role, fecha, estado) {
+  constructor(
+    nombre,
+    apellido,
+    tipo_documento,
+    celular,
+    identificacion,
+    edad,
+    peso,
+    correo,
+    password,
+    id_role,
+    fecha,
+    estado
+  ) {
     this.nombre = nombre;
     this.apellido = apellido;
     this.tipo_documento = tipo_documento;
@@ -18,7 +30,8 @@ class User {
   }
 
   static findByEmail(email, password, callback) {
-    const sql = "SELECT * FROM usuario WHERE correo = ? and password = ? AND id_role = 1";
+    const sql =
+      "SELECT * FROM usuario WHERE correo = ? and password = ? AND id_role = 1";
     const values = [email, password];
 
     mysqlConnection.query(sql, values, (err, result) => {
@@ -32,8 +45,18 @@ class User {
       INSERT INTO usuario (nombre, apellido, tipo_documento, celular, identificacion, edad, peso, correo, password, id_role, fecha, estado) 
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
     const values = [
-      user.nombre, user.apellido, user.tipo_documento, user.celular, user.identificacion,
-      user.edad, user.peso, user.correo, user.password, user.id_role, user.fecha, user.estado
+      user.nombre,
+      user.apellido,
+      user.tipo_documento,
+      user.celular,
+      user.identificacion,
+      user.edad,
+      user.peso,
+      user.correo,
+      user.password,
+      user.id_role,
+      user.fecha,
+      user.estado,
     ];
 
     mysqlConnection.query(sql, values, (err, result) => {
@@ -43,7 +66,7 @@ class User {
   }
 
   static findByEmailByGoogle({ googleId, email, name }, callback) {
-    const sqlSelect = 'SELECT * FROM usuario WHERE correo = ?';
+    const sqlSelect = "SELECT * FROM usuario WHERE correo = ?";
     mysqlConnection.query(sqlSelect, [email], (err, results) => {
       if (err) return callback(err, null);
 
@@ -59,18 +82,18 @@ class User {
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
       const values = [
         googleId || null,
-        name || 'No Name',
-        'No Last Name',
-        'CC',
-        '0',
-        '0',
-        '0',
-        '0',
+        name || "No Name",
+        "No Last Name",
+        "CC",
+        "0",
+        "0",
+        "0",
+        "0",
         email,
-        'null',
+        "null",
         1,
         new Date(),
-        1
+        1,
       ];
 
       mysqlConnection.query(sqlInsert, values, (err, result) => {
@@ -79,7 +102,6 @@ class User {
       });
     });
   }
-
 }
 
 module.exports = User;

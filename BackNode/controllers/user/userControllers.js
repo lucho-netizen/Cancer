@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const User = require("../../models/user");
+const User = require("../../models/user/user");
 const mysqlConnection = require("../../db/db"); // Ajusta la ruta según tu estructura de carpetas
 const { OAuth2Client } = require("google-auth-library");
 

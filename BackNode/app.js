@@ -2,8 +2,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const mysqlConnection = require("./db/db"); // Importar la conexión a la base de datos
-const userRoutes = require('./routes/userRoutes');
+const userRoutes = require('./routes/user/userRoutes');
 const AdminRoutes = require('./routes/admin/adminRoutes');
 
 

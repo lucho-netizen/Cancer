@@ -1,6 +1,6 @@
 const mysqlConnection = require("../../db/db");
 const sqlstring = require("sqlstring");
-const { findByEmail } = require("../user");
+const { findByEmail } = require("../../models/admin/admin");
 
 
 
