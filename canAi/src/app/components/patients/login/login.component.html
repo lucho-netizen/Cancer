@@ -1,4 +1,4 @@
-
+<script src="https://accounts.google.com/gsi/client" async></script>
 
 
 <div class="wrapper">
@@ -27,21 +27,18 @@
           type="password"
           class="form-control"
           [(ngModel)]="password"
-
           id="password"
           name="password"
           placeholder="Contraseña"
           required
         />
       </div>
-      <br>
+      <br />
       <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
-      <br>
+      <br />
       <button type="submit">Enviar</button>
-      
 
-
-      <br><br>
+      <br /><br />
 
       <div>
         <a routerLink="/adduser">
@@ -52,9 +49,28 @@
         </a>
       </div>
 
-      <br><br>
-      <button type="button" id="signInWithGoogle" class="btn btn-danger">Iniciar sesión con Google</button>
+      <br /><br />
+          <!-- login.component.html -->
+          <div id="buttonDiv"></div>
 
+          <!-- <div
+            id="g_id_onload"
+            data-client_id="236412742841-kb5urirqrtgs16j06m7sifcrgqu8psbf.apps.googleusercontent.com"
+            data-context="signup"
+            data-ux_mode="popup"
+            
+            data-auto_prompt="false"
+          ></div>
+
+          <div
+            class="g_id_signin"
+            data-type="standard"
+            data-shape="pill"
+            data-theme="filled_blue"
+            data-text="signin_with"
+            data-size="large"
+            data-logo_alignment="left"
+          ></div> -->
     </form>
 
     <img src="./../assets/imagenes/image-2.png" alt="Image 2" class="image-2" />

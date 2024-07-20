@@ -1,6 +1,10 @@
-create database cancer;
-
-use cancer;
+CREATE DATABASE  IF NOT EXISTS `cancer` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `cancer`;
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: localhost    Database: cancer
+-- ------------------------------------------------------
+-- Server version	8.0.37
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -234,8 +238,9 @@ DROP TABLE IF EXISTS `usuario`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuario` (
   `id` int NOT NULL AUTO_INCREMENT,
+  `googleId` varchar(255) DEFAULT NULL,
   `nombre` varchar(255) DEFAULT NULL,
-  `apellido` varchar(255) NOT NULL,
+  `apellido` varchar(255) DEFAULT NULL,
   `tipo_documento` varchar(20) DEFAULT NULL,
   `celular` int DEFAULT NULL,
   `identificacion` int unsigned DEFAULT NULL,
@@ -247,11 +252,12 @@ CREATE TABLE `usuario` (
   `fecha` datetime DEFAULT NULL,
   `estado` int DEFAULT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `googleId` (`googleId`),
   KEY `id_role` (`id_role`),
   KEY `usuario_ibfk_2_idx` (`estado`),
   CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`id_role`) REFERENCES `roles` (`id_role`),
   CONSTRAINT `usuario_ibfk_2` FOREIGN KEY (`estado`) REFERENCES `estado` (`estado_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -260,7 +266,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'wew','ewewe','TI',232323,1212,1,1,'112@i.com','112@i.com',1,'2024-02-17 07:20:22',0),(2,'admin','amin','CC',2345678,345678,0,0,'admin@i.com','admin@i.com',2,'2024-02-17 07:20:22',1),(3,'wewewe','ewew','',1222,34343434,20,30,'jhdua@xxx.com','jhdua@xxx.com1',2,'2024-02-17 07:20:22',1),(4,'wewewe','ewew','',1222,34343434,20,30,'jhdua@xxx.com','jhdua@xxx.com1',2,'2024-02-17 07:20:22',1),(5,'afvac','acaga','',4353,6565656,21,35,'jhdfas@xxx.com','jhdfas@xxx.com1',2,'2024-02-17 07:20:22',1),(6,'afvac','acaga','',4353,6565656,21,35,'jhdfas@xxx.com','jhdfas@xxx.com1',2,'2024-02-17 07:20:22',1);
+INSERT INTO `usuario` VALUES (1,NULL,'wew','ewewe','TI',232323,1212,1,1,'112@i.com','112@i.com',1,'2024-02-17 07:20:22',0),(2,NULL,'admin','admin','CC',2345678,345678,0,0,'admin@i.com','admin@i.com',2,'2024-02-17 07:20:22',1),(3,NULL,'wewewe','ewew','',1222,34343434,20,30,'jhdua@xxx.com','jhdua@xxx.com1',1,'2024-02-17 07:20:22',1),(4,NULL,'wewewe','ewew','',1222,34343434,20,30,'jhdua@xxx.com','jhdua@xxx.com1',1,'2024-02-17 07:20:22',1),(5,NULL,'afvac','acaga','',4353,6565656,21,35,'jhdfas@xxx.com','jhdfas@xxx.com1',1,'2024-02-17 07:20:22',1),(6,NULL,'afvac','acaga','',4353,6565656,21,35,'jhdfas@xxx.com','jhdfas@xxx.com1',1,'2024-02-17 07:20:22',1),(7,NULL,'Luis','Jose','CC',NULL,NULL,12,12,NULL,'ser@i.com',2,'2024-07-19 01:19:35',1),(8,NULL,'pepa','pig','CC',5676567,NULL,37,3,NULL,'sero@i.com',1,'2024-07-19 01:25:18',1),(9,NULL,'Luisa','Jose','TI',NULL,NULL,121,121,'sero@i.como','sero@i.como',1,'2024-07-19 01:34:18',1),(10,NULL,'maria','jose','CC',5775688,12121,24,60,'zero@i.como','zero@i.como',1,'2024-07-19 01:37:18',1),(11,'111067985651154348053','Luis J','No Last Name','Unknown',0,0,0,0,'lj534974@gmail.com','null',1,'2024-07-20 15:10:31',1),(12,'101408401025399466563','Brayner Perez','No Last Name','Unknown',0,0,0,0,'perezbrayner80@gmail.com','null',1,'2024-07-20 15:11:35',1),(13,'110517487857321375806','IngEso','No Last Name','CC',0,0,0,0,'i7695979@gmail.com','null',1,'2024-07-20 15:16:35',1);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -273,4 +279,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-17 11:13:00
+-- Dump completed on 2024-07-20 15:21:05

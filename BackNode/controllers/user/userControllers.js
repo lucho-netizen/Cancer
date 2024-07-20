@@ -1,7 +1,8 @@
 const jwt = require("jsonwebtoken");
-const User = require("../../models/user");
-const mysqlConnection = require('../../db/db'); // Ajusta la ruta según tu estructura de carpetas
 
+const User = require("../../models/user");
+const mysqlConnection = require("../../db/db"); // Ajusta la ruta según tu estructura de carpetas
+const { OAuth2Client } = require("google-auth-library");
 
 exports.login = (req, res) => {
   const { correo, password } = req.body;
@@ -24,104 +25,45 @@ exports.login = (req, res) => {
   });
 };
 
+// tonkens from G
+const client = new OAuth2Client(
+  "236412742841-kb5urirqrtgs16j06m7sifcrgqu8psbf.apps.googleusercontent.com"
+);
+const SECRET_KEY = "%RFGHJI";
+//Google User
 
+exports.googleLogin = async (req, res) => {
+  const { idToken } = req.body;
 
-  // exports.addUser, (req, res) => {
-  //   const {
-  //     nombre,
-  //     apellido,
-  //     tipo_documento,
-  //     celular,
-  //     identificacion,
-  //     edad,
-  //     peso,
-  //     correo,
-  //     password,
-  //     id_role = 2,
-  //     fecha = new Date(),
-  //     estado = 1,
-  //   } = req.body;
+  try {
+    const ticket = await client.verifyIdToken({
+      idToken,
+      audience:
+        "236412742841-kb5urirqrtgs16j06m7sifcrgqu8psbf.apps.googleusercontent.com", // Asegúrate de usar tu Client ID
+    });
 
-  //   // Consulta SQL para verificar si el correo ya está registrado
-  //   const checkEmailQuery =
-  //     "SELECT COUNT(*) AS count FROM usuario WHERE correo = ? ";
-  //   const checkEmailValues = [correo];
+    const payload = ticket.getPayload();
+    const { sub: googleId, email, name } = payload;
 
-  //   mysqlConnection.query(checkEmailQuery, checkEmailValues, (err, rows) => {
-  //     if (err) {
-  //       console.error("Error executing MySQL query: ", err);
-  //       res.status(500).json({ message: "Error en el servidor" });
-  //       return;
-  //     }
-
-  //     const emailCount = rows[0].count;
-
-  //     if (emailCount > 0) {
-  //       res.send("El correo ya está registrado");
-  //       res.render("tu_pagina_con_formulario", {
-  //         errorMessage: "El correo ya está registrado.",
-  //       });
-
-  //       return;
-  //     }
-
-  //     // Si el correo no está registrado, procede con la inserción del nuevo usuario
-  //     const insertUserQuery =
-  //       "INSERT INTO usuario (nombre, apellido, tipo_documento, celular, identificacion, edad, peso, correo, password, id_role, fecha, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-  //     const insertUserValues = [
-  //       nombre,
-  //       apellido,
-  //       tipo_documento,
-  //       celular,
-  //       identificacion,
-  //       edad,
-  //       peso,
-  //       correo,
-  //       password,
-  //       id_role,
-  //       fecha,
-  //       estado,
-  //     ];
-
-  //     mysqlConnection.query(insertUserQuery, insertUserValues, (err, result) => {
-  //       if (err) {
-  //         console.error("Error executing MySQL query: ", err);
-  //         res.status(500).json({ message: "Error en el servidor" });
-  //         return;
-  //       }
-  //       const token = jwt.sign({id: result.insertUserQuery}, 'secrect', {expiresIn: '1h' })
-  //       console.log("Usuario registrado con éxito");
-  //       res.status(201).json({ message: "Usuario registrado con éxito", token:token });
-  //     });
-  //   });
-  //   };
-
-
-  exports.createUserWithGoogle = async (req, res) => {
-    try {
-      const { email, name, googleId } = req.body;
-      let user = await User.findOne({ email });
-
-      if (!user) {
-        user = new User({
-          email,
-          name,
-          googleId,
-          role: 'user',
-        });
-        await user.save();
+    User.findByEmailByGoogle({ googleId, email, name }, (err, user) => {
+      if (err) {
+        console.error("Error finding or creating user:", err);
+        return res.status(500).json({ message: "Error en el servidor" });
       }
-      // Generar un token de JWT
-      const token = jwt.sign({ id: user.id }, 'secret', { expiresIn: '1h' });
 
-      res.status(201).send({ user, token });
-    } catch (err) {
-      console.error('Error al crear usuario', err);
-      res.status(500).send('Error en el servidor');
-    }
-   };
+      const token = jwt.sign({ sub: googleId, email, name }, SECRET_KEY, {
+        expiresIn: "1h",
+      });
+      res
+        .status(201)
+        .json({ message: "Usuario logueado correctamente", token });
+    });
+  } catch (error) {
+    console.error("Error en el login con Google:", error);
+    res.status(401).json({ message: "Invalid Token" });
+  }
+};
 
-  
 exports.addUser = (req, res) => {
   const {
     nombre,
@@ -135,10 +77,11 @@ exports.addUser = (req, res) => {
     password,
     id_role = 1,
     fecha = new Date(),
-    estado = 1
+    estado = 1,
   } = req.body;
 
-  const checkEmailQuery = "SELECT COUNT(*) AS count FROM usuario WHERE correo = ?";
+  const checkEmailQuery =
+    "SELECT COUNT(*) AS count FROM usuario WHERE correo = ?";
   const checkEmailValues = [correo];
 
   mysqlConnection.query(checkEmailQuery, checkEmailValues, (err, rows) => {
@@ -167,7 +110,7 @@ exports.addUser = (req, res) => {
       password,
       id_role,
       fecha,
-      estado
+      estado,
     };
     console.log("Datos a insertar en la base de datos:", newUser);
 
@@ -175,8 +118,20 @@ exports.addUser = (req, res) => {
       INSERT INTO usuario (nombre, apellido, tipo_documento, celular, identificacion, edad, peso, correo, password, id_role, fecha, estado)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
-    const insertUserValues = [nombre, apellido, tipo_documento, celular, identificacion, edad, peso, correo, password, id_role, fecha, estado];
-    
+    const insertUserValues = [
+      nombre,
+      apellido,
+      tipo_documento,
+      celular,
+      identificacion,
+      edad,
+      peso,
+      correo,
+      password,
+      id_role,
+      fecha,
+      estado,
+    ];
 
     mysqlConnection.query(insertUserQuery, insertUserValues, (err, result) => {
       if (err) {
@@ -185,13 +140,14 @@ exports.addUser = (req, res) => {
         return;
       }
 
-      const token = jwt.sign({ id: result.insertId }, 'secret', { expiresIn: '1h' });
+      const token = jwt.sign({ id: result.insertId }, "secret", {
+        expiresIn: "1h",
+      });
       console.log("Usuario registrado con éxito");
       res.status(201).json({ message: "Usuario registrado con éxito", token });
     });
   });
-}
-
+};
 
 exports.logout = (req, res) => {
   res.clearCookie("token");

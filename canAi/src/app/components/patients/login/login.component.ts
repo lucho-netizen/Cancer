@@ -8,6 +8,7 @@ import { Title } from '@angular/platform-browser';
 // Google Oauth
 import { SocialAuthService, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
 
+declare const google: any;
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private userService: UserService,
-    private GogoogleAuthService: SocialAuthService,
+    private GoogleAuthService: SocialAuthService,
     private router: Router,
     private titleService: Title
   ) { }
@@ -41,13 +42,62 @@ export class LoginComponent implements OnInit {
     return this.titleService.getTitle();
   }
 
+  // ngOnInit(): void {
+  //   // this.GoogleAuthService.authState.subscribe((user) => {
+  //   //   this.user = user;
+  //   //   this.loggedIn = (user != null);
+  //   //   console.log(this.user)
+  //   // });
+
+        //descomentar/    
+  //   (window as any).onGoogleSignIn = (googleUser: any) => {
+  //     const idToken = googleUser.getIdToken().id_token;
+  //     this.authService.loginWithGoogle(idToken).subscribe(
+  //       (response: any) => {
+  //        console.log('Login Successful, token:', response.token);
+  //        this.authService.setToken(response.token);
+  //         this.router.navigate(['/dashboard']); // Redirige al dashboard después del login exitoso
+  //       },
+  //       (error: any) => {
+  //         console.error('Error en el login:', error);
+  //         this.errorMessage = 'Error en el servidor. Por favor, inténtelo de nuevo más tarde.'; // Manejo de errores HTTP
+  //       }
+  //     )
+  //   }
+   
+  // }
+
+
   ngOnInit(): void {
-    this.GogoogleAuthService.authState.subscribe((user) => {
-      this.user = user;
-      this.loggedIn = (user != null);
-      console.log(this.user)
+    google.accounts.id.initialize({
+      client_id: '236412742841-kb5urirqrtgs16j06m7sifcrgqu8psbf.apps.googleusercontent.com',
+      callback: (response: any) => this.handleCredentialResponse(response)
     });
+    google.accounts.id.renderButton(
+      document.getElementById('buttonDiv'),
+      { theme: 'outline', size: 'large' }  // customization attributes
+    );
+    google.accounts.id.prompt(); // also display the One Tap dialog
   }
+
+  handleCredentialResponse(response: any) {
+    this.authService.loginWithGoogle(response.credential).subscribe(
+      (response: any) => {
+        if(response && response.token) {
+          this.authService.setToken(response.token);
+          this.router.navigate(['/dashboard']);
+        }
+        else {
+          this.errorMessage = 'Credenciales inválidas'; // Mensaje de error si las credenciales son incorrectas
+
+        }
+      },
+      (error: any) => {
+        console.error('Login failed:', error);
+      }
+    );
+  }
+
 
   onSubmit(): void {
     if (this.email && this.password) {
@@ -92,11 +142,11 @@ export class LoginComponent implements OnInit {
   // }
 
   
-  signInWithGoogle(): void {
-    this.GogoogleAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).catch((error) => {
-      console.error('Google Sign-in error', error);
-    });
-  }
+  // signInWithGoogle(): void {
+  //   this.GoogleAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).catch((error) => {
+  //     console.error('Google Sign-in error', error);
+  //   });
+  // }
 
 
 }

@@ -14,7 +14,8 @@ import { tap } from 'rxjs/operators';
     private ROLE_KEY = 'userRole';
 
 
-    private apiUrl = 'http://127.0.0.1:5000/api'; // Ajusta la URL del backend según tu configuración
+    private apiUrl = 'http://127.0.0.1:5000/api';
+    private apiUrlG = 'http://127.0.0.1:5000/api/google';
     
 
     private loggedIn$ = new BehaviorSubject<boolean>(this.isLoggedIn());
@@ -37,6 +38,22 @@ import { tap } from 'rxjs/operators';
           })
       );
     }
+
+    //Login User google
+
+    loginWithGoogle(idToken: string): Observable<any> {
+      return this.http.post<any>(this.apiUrlG, { idToken }).pipe(
+        tap(response => {
+          this.setToken(response.token);
+          this.setRole(response.role);
+          this.loggedIn$.next(true);
+          this.userRole$.next(response.user_role);
+        })
+      )
+
+    }
+
+
     //Add user
 
     addUser(
