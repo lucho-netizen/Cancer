@@ -1,0 +1,55 @@
+version: "3.1"
+
+stories:
+- story: Saludo del usuario
+  steps:
+  - intent: saludo
+  - action: utter_saludo
+
+- story: Despedida del usuario
+  steps:
+  - intent: despedida
+  - action: utter_despedida
+
+- story: Usuario afirma
+  steps:
+  - intent: afirmacion
+  - action: utter_afirmacion
+
+- story: Usuario niega
+  steps:
+  - intent: negacion
+  - action: utter_negacion
+
+- story: Usuario feliz
+  steps:
+  - intent: mood_feliz
+  - action: utter_mood_feliz
+
+- story: Usuario triste
+  steps:
+  - intent: mood_triste
+  - action: utter_mood_triste
+
+- story: Bot challenge
+  steps:
+  - intent: bot_challenge
+  - action: utter_bot_challenge
+
+- story: Información sobre el cancer de mama
+  steps:
+  - intent: informacion_cancer_mama
+  - action: utter_informacion_cancer_mama
+
+
+
+
+- story: Síntomas del cancer de mama
+  steps:
+  - intent: sintomas_cancer_mama
+  - action: utter_sintomas_cancer_mama
+
+- story: Tratamiento del cancer de mama
+  steps:
+  - intent: tratamiento_cancer_mama
+  - action: utter_tratamiento_cancer_mama

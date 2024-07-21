@@ -1,0 +1,95 @@
+version: "3.1"
+
+intents:
+- saludo
+- despedida
+- afirmacion
+- negacion
+- mood_feliz
+- mood_triste
+- bot_challenge
+- informacion_cancer_mama
+- sintomas_cancer_mama
+- tratamiento_cancer_mama
+
+responses:
+  utter_saludo:
+  - text: "¡Hola! ¿Cómo puedo ayudarte hoy?"
+  - text: "¡Hola! ¿En qué puedo asistirte hoy?"
+  - text: "¡Hola! ¿Qué puedo hacer por ti hoy?"
+  - text: "¡Saludos! ¿En qué puedo ayudarte?"
+  - text: "¡Hola! ¿Cómo estás? ¿Necesitas algo?"
+
+  utter_despedida:
+  - text: "¡Hasta luego! Que tengas un buen día."
+  - text: "¡Adiós! Espero que tengas un día maravilloso."
+  - text: "¡Nos vemos! Cuídate."
+  - text: "¡Hasta pronto! Espero verte de nuevo pronto."
+  - text: "¡Adiós! Siempre es un placer hablar contigo."
+
+  utter_afirmacion:
+  - text: "¡Genial! Sigamos adelante."
+  - text: "¡Perfecto! Continuemos."
+  - text: "¡Muy bien! Avancemos."
+  - text: "¡Excelente! ¿En qué más puedo ayudarte?"
+  - text: "¡Genial! ¿Qué más necesitas?"
+
+  utter_negacion:
+  - text: "Entiendo. ¿Hay algo más en lo que pueda ayudarte?"
+  - text: "Entiendo. ¿Puedo asistirte con algo más?"
+  - text: "Comprendo. ¿Existe otra cosa con la que pueda ayudarte?"
+  - text: "De acuerdo. Si necesitas algo más, estaré aquí."
+  - text: "Entiendo. Si tienes más preguntas, no dudes en preguntar."
+
+  utter_mood_feliz:
+  - text: "¡Me alegra oír que estás feliz! ¿Cómo puedo ayudarte hoy?"
+  - text: "¡Qué bueno que estés feliz! ¿En qué puedo asistirte hoy?"
+  - text: "¡Es genial que estés contento! ¿Cómo puedo servirte hoy?"
+  - text: "¡Excelente! ¿Qué más puedo hacer por ti?"
+
+  utter_mood_triste:
+  - text: "Lo siento que te sientas así. ¿Cómo puedo ayudarte hoy?"
+  - text: "Lamento que te sientas triste. ¿Cómo puedo asistirte hoy?"
+  - text: "Es una lástima que te sientas decaído. ¿Cómo puedo ayudarte hoy?"
+  - text: "Siento escuchar eso. ¿Hay algo específico en lo que necesitas ayuda?"
+  - text: "Entiendo que no te sientas bien. ¿Qué puedo hacer para mejorar tu día?"
+
+  utter_bot_challenge:
+  - text: "Sí, soy un chatbot. ¿Cómo puedo ayudarte hoy?"
+  - text: "Correcto, soy un chatbot. ¿Cómo puedo asistirte hoy?"
+  - text: "Así es, soy un chatbot. ¿En qué puedo servirte hoy?"
+  - text: "Soy un chatbot diseñado para ayudarte. ¿Qué necesitas hoy?"
+  - text: "Efectivamente, soy un chatbot. ¿En qué puedo ser útil?"
+
+  utter_informacion_cancer_mama:
+  - text: "El cáncer de mama es un tipo de cáncer que se forma en las células de los senos."
+  - text: "El cáncer de mama se origina en el tejido mamario y es uno de los cánceres más comunes entre las mujeres."
+  - text: "El cáncer de mama es una enfermedad en la que se desarrollan células malignas en el tejido mamario."
+  - text: "El cáncer de mama se desarrolla a partir de las células del seno y puede afectar tanto a hombres como a mujeres, aunque es más común en mujeres."
+  - text: "El cáncer de mama es una enfermedad caracterizada por el crecimiento incontrolado de células en el tejido mamario."
+
+  utter_sintomas_cancer_mama:
+  - text: "Los síntomas del cáncer de mama pueden incluir la aparición de un bulto en el seno o en la axila, cambios en el tamaño o la forma del seno, secreción del pezón que no sea leche materna, y cambios en la piel del seno o del pezón."
+  - text: "Entre los síntomas del cáncer de mama se encuentran bultos en el seno o en la axila, cambios en la forma o el tamaño del seno, secreciones anormales del pezón, y alteraciones en la piel del seno o del pezón."
+  - text: "Los signos del cáncer de mama pueden incluir bultos, cambios en el tamaño o forma del seno, secreciones del pezón que no sean leche materna, y cambios en la piel del seno."
+  - text: "Algunos síntomas del cáncer de mama incluyen bultos en el seno o axila, cambios en el tamaño del seno, secreciones anormales del pezón, y cambios en la piel del seno."
+  - text: "Los síntomas comunes del cáncer de mama incluyen la aparición de bultos, cambios en el tamaño o forma del seno, secreciones del pezón que no sean leche materna, y cambios en la piel del seno."
+
+  utter_tratamiento_cancer_mama:
+  - text: "El tratamiento para el cáncer de mama puede incluir cirugía, radioterapia, quimioterapia, terapia hormonal, y terapias dirigidas."
+  - text: "El manejo del cáncer de mama puede involucrar cirugía, radioterapia, quimioterapia, terapia hormonal y tratamientos dirigidos."
+  - text: "El tratamiento del cáncer de mama suele combinar cirugía, radioterapia, quimioterapia, terapia hormonal y terapias específicas."
+  - text: "Para tratar el cáncer de mama se pueden utilizar diferentes enfoques como cirugía, radioterapia, quimioterapia, terapia hormonal y terapias dirigidas."
+  - text: "El tratamiento del cáncer de mama puede incluir una combinación de cirugía, radioterapia, quimioterapia, terapia hormonal y terapias dirigidas."
+
+actions:
+- utter_saludo
+- utter_despedida
+- utter_afirmacion
+- utter_negacion
+- utter_mood_feliz
+- utter_mood_triste
+- utter_bot_challenge
+- utter_informacion_cancer_mama
+- utter_sintomas_cancer_mama
+- utter_tratamiento_cancer_mama

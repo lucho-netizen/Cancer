@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="../../static/css/register/style.css" />
+    <link rel="stylesheet" href="../../static/css/register/style_2.css" />
+
+    <style>
+      @font-face {
+        font-family: "Linearicons-Free";
+        src: url("../../static/css/fonts/Linearicons-Free.woff2");
+      }
+      @font-face {
+        font-family: "Muli-SemiBold";
+        src: url("../../static/css/muli/Muli-SemiBold.ttf");
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="inner">
+        <img src="../../static/css/images/img.png" alt="" class="image-1" />
+
+        <form action="/index" method="post" enctype="multipart/form-data">
+          <h3>Iniciar sesión</h3>
+          <div class="form-holder">
+            <span class="lnr lnr-user"></span>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Nombre de usuario"
+              name="correo"
+              id="correo"
+              required
+            />
+          </div>
+          <div class="form-holder">
+            <span class="lnr lnr-lock"></span>
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Contraseña"
+              name="password"
+              id="password"
+              required
+            />
+          </div>
+          <button class="submit">Send</button>
+          <!-- <input type="submit" value="submit" /> -->
+
+          <div>
+            <br />
+            <p>A&uacute;n no est&aacute;s registrada?</p>
+            <a href="/add_user_r/">No</a>
+          </div>
+        </form>
+        <img src="../../static/css/images/image-2.png" alt="" class="image-2" />
+      </div>
+    </div>
+  </body>
+</html>

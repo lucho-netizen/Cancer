@@ -1,0 +1,132 @@
+version: "3.1"
+
+nlu:
+- intent: saludo
+  examples: |
+    - hola
+    - que tal
+    - todo bien
+    - buen día
+    - buenos días
+    - cómo estás
+    - cómo vas
+    - cómo te va
+    - buenas
+    - hola, ¿como estas?
+    - ¡hey!
+    - hola, ¿que haces?
+    - ola de 
+    - ola
+
+- intent: despedida
+  examples: |
+    - adiós
+    - hasta luego
+    - nos vemos
+    - chao
+    - que tengas un buen día
+    - hasta pronto
+    - bye
+    - hasta la próxima
+    - cuídate
+    - nos vemos luego
+    - hasta mañana
+    - que tengas una buena tarde
+
+- intent: afirmacion
+  examples: |
+    - sí
+    - claro
+    - por supuesto
+    - eso suena bien
+    - correcto
+    - definitivamente
+    - ok
+
+- intent: negacion
+  examples: |
+    - no
+    - nunca
+    - no me gusta
+    - no creo
+    - no estoy seguro
+    - de ninguna manera
+    - no realmente
+
+- intent: mood_feliz
+  examples: |
+    - genial
+    - increíble
+    - me siento bien
+    - maravilloso
+    - estoy contento
+    - muy bien
+    - excelente
+    - feliz
+
+- intent: mood_triste
+  examples: |
+    - triste
+    - mal
+    - no muy bien
+    - no me siento bien
+    - decepcionado
+    - muy triste
+    - me siento mal
+    - desanimado
+    - deprimido
+
+- intent: bot_challenge
+  examples: |
+    - ¿eres un robot?
+    - ¿eres un humano?
+    - ¿estoy hablando con una máquina?
+    - ¿hablo con un bot?
+    - ¿hablo con una persona?
+    - ¿eres humano o robot?
+    - ¿eres una IA?
+    - ¿eres un programa?
+    - ¿eres una persona real?
+    - ¿hablo con un ser humano o un bot?
+
+
+- intent: informacion_cancer_mama
+  examples: |
+    - Más sobre la Cancer de mama
+    - Necesito saber más sobre la Cancer de mama
+    - ¿Qué es la Cancer de mama?
+    - Dime más sobre la Cancer de mama
+    - ¿Cómo se desarrolla la Cancer de mama?
+    - ¿Cuáles son los tipos de Cancer de mama?
+    - ¿Qué es el cancer de mama?
+    
+
+- intent: cancer_mama
+  examples: |
+    - Que es la Cancer de mama
+    - Dime más sobre la Cancer de mama
+    - Como se desarrolla la Cancer de mama 
+    - Que es la Cancer de mama 
+    - Explicame la Cancer de mama
+    - Dime más sobre la cancer de mama 
+    - Quiero saber sobre la cancer
+    - Información sobre  el cancer
+    
+
+
+
+- intent: sintomas_cancer_mama
+  examples: |
+    - ¿Cuáles son los síntomas de la cancer de mama?
+    - ¿Cómo sé si tengo cancer de mama?
+    - ¿Qué señales debo buscar para la cancer de mama?
+    - ¿Cómo puedo saber si tengo cancer de mama?
+    - ¿Qué sintomas tiene la cancer de mama?
+
+- intent: tratamiento_cancer_mama
+  examples: |
+    - ¿Cómo se trata la cancer de mama?
+    - ¿Cuál es el tratamiento para la cancer de mama?
+    - ¿Hay una cura para la cancer de mama?
+    - ¿Cómo se cura la cancer de mama?
+    - ¿Cómo se puede tratar la cancer de mama?

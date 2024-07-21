@@ -1,0 +1,60 @@
+stories:
+- story: Saludo y pregunta sobre el cancer de mama
+  steps:
+  - user: |
+      hola
+    intent: saludo
+  - action: utter_saludo
+  - user: |
+      ¿Qué es el cancer de mama?
+    intent: informacion_cancer_mama
+  - action: utter_informacion_cancer_mama
+
+- story: Pregunta sobre los síntomas del cancer de mama
+  steps:
+  - user: |
+      ¿Cuáles son los síntomas del cancer de mama?
+    intent: sintomas_cancer_mama
+  - action: utter_sintomas_cancer_mama
+
+- story: Usuario feliz
+  steps:
+  - user: |
+      Me siento genial hoy
+    intent: mood_feliz
+  - action: utter_mood_feliz
+
+- story: Usuario triste
+  steps:
+  - user: |
+      Estoy muy triste
+    intent: mood_triste
+  - action: utter_mood_triste
+
+- story: Usuario afirma
+  steps:
+  - user: |
+      Sí, claro
+    intent: afirmacion
+  - action: utter_afirmacion
+
+- story: Usuario niega
+  steps:
+  - user: |
+      No, eso no es correcto
+    intent: negacion
+  - action: utter_negacion
+
+- story: Desafío al bot
+  steps:
+  - user: |
+      ¿Eres un bot?
+    intent: bot_challenge
+  - action: utter_bot_challenge
+
+- story: Despedida
+  steps:
+  - user: |
+      Adiós, hasta luego
+    intent: despedida
+  - action: utter_despedida

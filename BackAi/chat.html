@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chatbot con FastAPI y Rasa</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        height: 100vh;
+        background-color: #f4f4f9;
+      }
+      .chat-container {
+        width: 100%;
+        max-width: 400px;
+        height: 500px;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        margin: 20px;
+        background: #fff;
+
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .chat-container.open {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .chat-header {
+        background: #007bff;
+        color: #fff;
+        padding: 15px;
+        text-align: center;
+        font-size: 1.2em;
+        cursor: pointer;
+      }
+
+      .chat-header .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        background: transparent;
+        border: none;
+        color: #fff;
+        font-size: 1.5em;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+      /* .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        background: transparent;
+        border: none;
+        color: #fff;
+        font-size: 1.5em;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      } */
+      .close-btn:hover {
+        color: #ff4d4d; /* Cambia el color al pasar el cursor sobre el botón */
+      }
+      .chat-messages {
+        padding: 15px;
+        flex: 1;
+        overflow-y: auto;
+        background: #f9f9f9;
+        display: flex;
+        flex-direction: column;
+      }
+      .message {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: flex-end;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+      .message.user {
+        justify-content: flex-end;
+      }
+      .message.bot {
+        justify-content: flex-start;
+      }
+      .message p {
+        padding: 10px;
+        border-radius: 20px;
+        max-width: 70%;
+        word-wrap: break-word;
+        margin: 0;
+        animation: slideIn 0.5s ease-out;
+      }
+      .message.user p {
+        background: #007bff;
+        color: #fff;
+      }
+      .message.bot p {
+        background: #e9ecef;
+        color: #333;
+      }
+      .chat-input {
+        display: flex;
+        border-top: 1px solid #ddd;
+        background: #f9f9f9;
+      }
+      .chat-input input {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 0 0 0 8px;
+        font-size: 1em;
+      }
+      .chat-input button {
+        padding: 10px 15px;
+        border: none;
+        background: #007bff;
+        color: #fff;
+        border-radius: 0 0 8px 0;
+        cursor: pointer;
+        font-size: 1em;
+      }
+      .chat-float-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        background: #007bff;
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        font-size: 1.5em;
+        text-align: center;
+        z-index: 1000; /* Ensure it is above other content */
+
+      }
+      .chat-float-button.hidden {
+        opacity: 0;
+        pointer-events: none;
+        display: none;
+      }
+      .chat-input button:hover {
+        background: #0056b3;
+      }
+      /* Animations */
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes slideIn {
+        from {
+          transform: translateX(-10px);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chat-container" id="chat-container">
+      <div class="chat-header">
+        Chatbot
+        <button class="close-btn" onclick="toggleChat()">×</button>
+      </div>
+      <div class="chat-messages" id="chat"></div>
+      <div class="chat-input">
+        <input
+          type="text"
+          id="user_input"
+          placeholder="Type a message..."
+          onkeydown="checkEnter(event)"
+        />
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+    <div class="chat-float-button" id="chatFloatButton" onclick="toggleChat()">💬</div>
+
+    <script>
+      const chatDiv = document.getElementById("chat");
+      const userInput = document.getElementById("user_input");
+      const chatContainer = document.getElementById("chat-container");
+      const chatFloatButton = document.getElementById("chat-float-button");
+
+      let isSending = false; // Flag to prevent multiple sends
+
+      function sendMessage() {
+        if (isSending) return;
+
+        const messageText = userInput.value.trim();
+        if (messageText === "") return;
+
+        isSending = true;
+
+        fetch("http://localhost:8000/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ sender: "user", message: messageText }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // Add user's message to chat
+            const userMessageDiv = document.createElement("div");
+            userMessageDiv.classList.add("message", "user");
+            userMessageDiv.innerHTML = `<p>${messageText}</p>`;
+            chatDiv.appendChild(userMessageDiv);
+
+            // Animate the user's message
+            setTimeout(() => {
+              userMessageDiv.style.opacity = "1";
+              userMessageDiv.style.transform = "translateY(0)";
+            }, 10); // Short delay for animation effect
+
+            // Add bot's messages to chat
+            data.forEach((message) => {
+              const botMessageDiv = document.createElement("div");
+              botMessageDiv.classList.add("message", "bot");
+              botMessageDiv.innerHTML = `<p>${message.text}</p>`;
+              chatDiv.appendChild(botMessageDiv);
+
+              // Animate the bot's message
+              setTimeout(() => {
+                botMessageDiv.style.opacity = "1";
+                botMessageDiv.style.transform = "translateY(0)";
+              }, 10); // Short delay for animation effect
+            });
+
+            // Clear the input field and scroll to the bottom
+            userInput.value = "";
+            chatDiv.scrollTop = chatDiv.scrollHeight; // Auto-scroll to bottom
+            isSending = false;
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            isSending = false;
+          });
+      }
+      function toggleChat() {
+        chatContainer.classList.toggle("open");
+        chatFloatButton.classList.toggle("hidden")
+        userInput.focus();
+      }
+
+      function checkEnter(event) {
+        if (event.key === "Enter") {
+          event.preventDefault(); // Prevent form submission
+          sendMessage();
+        }
+      }
+
+      userInput.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+          event.preventDefault(); // Prevent form submission
+          sendMessage();
+        }
+      });
+    </script>
+  </body>
+</html>

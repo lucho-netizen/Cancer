@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>M&aacute;s sobre el c&aacute;ncer</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+      body {
+        font-family: "Arial";
+
+        margin: 0;
+        padding: 0;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+
+      /* Footer */
+      footer {
+        background-color: #accffe;
+        color: #ffffff;
+        padding: 20px;
+        text-align: center;
+        font-size: 14px;
+      }
+
+      footer p {
+        margin: 0;
+      }
+
+      footer a {
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      footer a:hover {
+        color: #0c0b0b;
+      }
+
+      .footer-logo {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+      }
+
+      .footer-social-icons {
+        margin-top: 20px;
+      }
+
+      .footer-social-icons a {
+        display: inline-block;
+        margin-right: 10px;
+        color: #ffffff;
+        font-size: 20px;
+      }
+
+      h1 {
+        color: #333333;
+        text-align: center;
+        padding: 20px 0;
+      }
+
+      p {
+        color: #666666;
+        text-align: center;
+        margin-bottom: 30px;
+        text-align: justify;
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      @media (max-width: 768px) {
+        /* Estilos para pantallas pequeñas (responsive) */
+        p {
+          font-size: 14px;
+          /* Ajusta el tamaño de fuente para pantallas pequeñas */
+        }
+      }
+
+      h2 {
+        color: #333333;
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      p.definition {
+        color: #666666;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      img {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 20%;
+        margin-bottom: 10px;
+      }
+
+      a {
+        color: #accffe;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      a:hover {
+        color: #accffe;
+      }
+
+      .cards-container {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        flex-direction: row-reverse;
+        align-items: stretch;
+      }
+
+      .card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* Alinea los elementos al centro */
+        margin: 20px;
+        width: 300px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        text-align: center;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+      }
+
+      .card:hover {
+        transform: scale(1.05);
+      }
+
+      .menu {
+        list-style: none;
+        padding: 0;
+        background-color: #accffe;
+        width: 100%;
+        /* Cambiado a 100% para que abarque toda la pantalla */
+        margin: 0;
+        /* Eliminado el margen para que el menú esté pegado a los bordes */
+        position: fixed;
+        /* Fijar el menú en la parte superior */
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        /* Asegura que el menú esté por encima de otros elementos */
+        transition: all 0.3s ease;
+        text-align: center;
+      }
+
+      .menu li a {
+        text-decoration: none;
+        color: white;
+        padding: 20px;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        /* Asegura que el padding no afecte el ancho total */
+      }
+
+      .menu li {
+        display: inline-block;
+        text-align: center;
+      }
+
+      .menu li a:hover {
+        background: #accffe;
+      }
+
+      @media (max-width: 768px) {
+        /* Estilos para pantallas pequeñas (responsive) */
+        .menu {
+          text-align: center;
+          /* Centra los elementos en pantallas pequeñas */
+        }
+
+        .menu li {
+          display: block;
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <ul class="menu">
+        <li><a href="#">Inicio</a></li>
+        <li><a href="/ai">Chats</a></li>
+        <li><a href="#">Servicios</a></li>
+        <li><a href="#">Acerca De</a></li>
+        <li><a href="#">Contacto</a></li>
+        <li><a href="/logout">Cerrar Sessión</a></li>
+      </ul>
+    </header>
+
+    <br /><br /><br /><br /><br />
+    <h1>Síntomas del cáncer de mama</h1>
+    <p style="display: flex; margin-left: 50px; margin-right: 70px">
+      El cáncer de mama es una enfermedad en la cual las células de la mama se
+      multiplican sin control. Existen distintos tipos de cáncer de mama. El
+      tipo de cáncer de mama depende de qué células de la mama se vuelven
+      cancerosas. La mayoría de los cánceres de mama comienzan en los conductos
+      o en los lobulillos. El cáncer de mama puede diseminarse fuera de la mama
+      a través de los vasos sanguíneos y los vasos linfáticos. Cuando el cáncer
+      de mama se disemina a otras partes del cuerpo, se dice que ha hecho
+      metástasis. Aquí te presentamos algunos de los síntomas más comunes del
+      cáncer de mama y sus definiciones:
+    </p>
+    <div id="symptoms" class="cards-container">
+      <div class="card">
+        <img
+          src="../../static/css/images/imagen1.png"
+          alt="Irritación o hundimientos en la piel de la mama"
+        />
+        <h2>Irritación o hundimientos en la piel de la mama</h2>
+        <p class="definition">
+          Este cambio puede ser causado por varios factores, incluyendo la
+          menstruación, la maternidad, cambios en el peso y ciertos
+          medicamentos. Sin embargo, un cambio significativo que no está
+          relacionado con estos factores podría ser un signo de cáncer de mama.
+        </p>
+        <a
+          href="https://www.medicalnewstoday.com/articles/es/hoyuelos-por-cancer-de-mama#:~:text=%C2%BFQu%C3%A9%20son%20los%20hoyuelos%3F,como%20c%C3%A1ncer%20de%20mama%20inflamatorio."
+          target="_blank"
+          >Más información</a
+        >
+      </div>
+      <div class="card">
+        <img
+          src="../../static/css/images/imagen5.png"
+          alt="Enrojecimiento o descamación en la zona del pezón o la mama"
+        />
+        <h2>Enrojecimiento o descamación en la zona del pezón o la mama</h2>
+        <p class="definition">
+          Este cambio puede incluir hoyuelos, enrojecimiento, descamación o
+          engrosamiento de la piel del seno. Estos cambios pueden ser síntomas
+          de cáncer de mama, aunque también pueden ser causados por otros
+          problemas de salud.
+        </p>
+        <a
+          href="https://www.breastcancer.org/es/afecciones-mamarias-benignas/eccema-pezon"
+          target="_blank"
+          >Más información</a
+        >
+      </div>
+      <div class="card">
+        <img
+          src="../../static/css/images/imagen2.png"
+          alt="Hundimiento del pezón o dolor en esa zona"
+        />
+        <h2>Hundimiento del pezón o dolor en esa zona</h2>
+        <p class="definition">
+          Este síntoma puede ser causado por varios factores, incluyendo la
+          menstruación, la maternidad, cambios en el peso y ciertos
+          medicamentos. Sin embargo, un cambio significativo que no está
+          relacionado con estos factores podría ser un signo de cáncer de mama.
+        </p>
+        <a href="https://www.bbc.com/mundo/noticias-39578310" target="_blank"
+          >Más información</a
+        >
+      </div>
+      <div class="card">
+        <img
+          src="../../static/css/images/imagen4.png"
+          alt="Secreción del pezón, que no sea leche, incluso de sangre"
+        />
+        <h2>Secreción del pezón, que no sea leche, incluso de sangre</h2>
+        <p class="definition">
+          Este síntoma puede ser causado por varios factores, incluyendo la
+          menstruación, la maternidad, cambios en el peso y ciertos
+          medicamentos. Sin embargo, un cambio significativo que no está
+          relacionado con estos factores podría ser un signo de cáncer de mama.
+        </p>
+        <a
+          href="https://www.mayoclinic.org/es/diseases-conditions/galactorrhea/symptoms-causes/syc-20350431#:~:text=La%20secreci%C3%B3n%20por%20el%20pez%C3%B3n,c%C3%A1ncer%20de%20mama%20no%20diagnosticado."
+          target="_blank"
+          >Más información</a
+        >
+      </div>
+      <div class="card">
+        <img
+          src="../../static/css/images/imagen3.png"
+          alt="Dolor en cualquier parte de la mama"
+        />
+        <h2>Dolor en cualquier parte de la mama</h2>
+        <p class="definition">
+          Este síntoma puede ser causado por varios factores, incluyendo la
+          menstruación, la maternidad, cambios en el peso y ciertos
+          medicamentos. Sin embargo, un cambio significativo que no está
+          relacionado con estos factores podría ser un signo de cáncer de mama.
+        </p>
+        <a
+          href="https://medlineplus.gov/spanish/ency/article/003152.htm#:~:text=Hay%20muchas%20causas%20posibles%20para,antes%20del%20periodo%20es%20normal."
+          target="_blank"
+          >Más información</a
+        >
+      </div>
+      <div class="card">
+        <img
+          src="../../static/css/images/imagen7.png"
+          alt="Dolor en cualquier parte de la mama"
+        />
+        <h2>Aumento de la sensibilidad en la mama.</h2>
+        <p class="definition">
+          El aumento de la sensibilidad en la mama puede ser un síntoma de
+          cáncer de mama, pero no es el síntoma más común. El síntoma más común
+          del cáncer de mama es un bulto o engrosamiento en la mama. Otros
+          síntomas posibles del cáncer de mama incluyen: Cambios en la piel de
+          la mama, como enrojecimiento, descamación, hundimientos o hoyuelos.
+          Secreción del pezón, especialmente si es de color rojo, verdoso o
+          amarillento. Hundimiento del pezón o del área alrededor del pezón.
+          Dolor en la mama o la axila. Cambios en el tamaño o la forma de la
+          mama.
+        </p>
+        <a href="http://ilitiaginecologia.com/conoce-tus-mamas/" target="_blank"
+          >Más información</a
+        >
+      </div>
+      <div class="card">
+        <img
+          src="../../static/css/images/imagen8.png"
+          alt="Dolor en cualquier parte de la mama"
+        />
+
+        <h2>Un bulto o engrosamiento en la mama</h2>
+        <p class="definition" style="text-align: justify">
+          es un engrosamiento o protuberancia que se palpa diferente del tejido
+          mamario circundante. Un bulto puede ser descubierto por la propia
+          mujer o por el médico durante una exploración clínica rutinaria. Los
+          bultos en las mamas son relativamente frecuentes y, por lo general,
+          son benignos.
+        </p>
+        <a href="https://www.bbc.com/mundo/noticias-39578310" target="_blank"
+          >Más información</a
+        >
+      </div>
+
+      <div class="card">
+        <img
+          src="../../static/css/images/imagen9.png"
+          alt="Dolor en cualquier parte de la mama"
+        />
+        <h2>Cambio en el tamaño o la forma de la mama.</h2>
+        <p class="definition" style="text-align: justify">
+          s cualquier diferencia en el seno de lo que es habitual para una mujer
+          en particular. Durante el ciclo menstrual, muchas mujeres tienen
+          variaciones en el tamaño de los senos o más sensibilidad, generalmente
+          causada por cambios en los niveles de las hormonas estrógeno y
+          progesterona.
+        </p>
+        <a href="http://ilitiaginecologia.com/conoce-tus-mamas/" target="_blank"
+          >Más información</a
+        >
+      </div>
+
+      <div class="card">
+        <img
+          src="../../static/css/images/imagen10.png"
+          alt="Dolor en cualquier parte de la mama"
+        />
+        <h2>Hinchazón de los ganglios linfáticos de la axila o el cuello.</h2>
+        <p class="definition" style="text-align: justify">
+          Los ganglios linfáticos son responsables de filtrar el líquido
+          linfático y detectar los cambios químicos que indican que existe
+          infección. Cuando estos puntos de filtro se encuentran en la axila,
+          los médicos pueden llamarlos ganglios linfáticos axilares. Debido a
+          que los ganglios linfáticos axilares están cerca de los senos, con
+          frecuencia son el primer lugar donde se propaga el cáncer de mama si
+          se mueve más allá del tejido mamario.
+        </p>
+        <a
+          href="https://www.medicalnewstoday.com/articles/es/ganglios-linfaticos-axilares-y-cancer-de-mama"
+          target="_blank"
+          >Más información</a
+        >
+      </div>
+
+      <div class="card">
+        <img
+          src="../../static/css/images/imagen11.png"
+          alt="Dolor en cualquier parte de la mama"
+        />
+        <h2>Sensación de ardor o hormigueo en la mama o el pezón</h2>
+        <p class="definition" style="text-align: justify">
+          La sensación de ardor o hormigueo en la mama o el pezón puede ser un
+          signo de cáncer de mama, pero también puede ser causada por otras
+          afecciones, como la neuropatía diabética, la mastopatía fibroquística
+          o la infección del pezón.En el caso del cáncer de mama, la sensación
+          de ardor o hormigueo puede ser causada por el crecimiento del tumor o
+          por la compresión de los nervios.
+        </p>
+        <a
+          href="https://www.cancer.org/es/cancer/tipos/cancer-de-seno/pruebas-de-deteccion-y-deteccion-temprana-del-cancer-de-seno/signos-y-sintomas-del-cancer-de-seno.html"
+          target="_blank"
+          >Más información</a
+        >
+      </div>
+    </div>
+    <br /><br /><br /><br /><br /><br />
+    <footer>
+      <img
+        src="../../static/css/images/logo.PNG"
+        alt="Logo del sitio web"
+        class="footer-logo"
+      />
+      <p style="text-align: center">
+        © 2024 BreastHub. Todos los derechos reservados.
+      </p>
+      <p style="text-align: center">
+        Desarrollado por
+        <a href="https://www.tusitio.com" target="_blank">SoftDevCode S.A.S</a>
+      </p>
+      <div class="footer-social-icons" style="background-color: #accffe">
+        <a href="https://www.facebook.com/" target="_blank"
+          ><i class="facebook"></i
+        ></a>
+        <a href="https://www.twitter.com/tusitio" target="_blank"
+          ><i class="fab fa-twitter"></i
+        ></a>
+        <a href="https://www.instagram.com/tusitio" target="_blank"
+          ><i class="fab fa-instagram"></i
+        ></a>
+        <a href="https://www.linkedin.com/in/tunombre" target="_blank"
+          ><i class="fab fa-linkedin-in"></i
+        ></a>
+      </div>
+    </footer>
+  </body>
+</html>
