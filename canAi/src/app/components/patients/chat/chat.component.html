@@ -1,0 +1,16 @@
+<div class="chat-container" [ngClass]="{'open': isChatOpen}">
+  <div class="chat-header">
+    Chatbot
+    <button class="close-btn" (click)="toggleChat()">x</button>
+  </div>
+  <div class="chat-messages" #chatContainer>
+    <div *ngFor="let message of messages" [ngClass]="{'user-message': message.sender === 'user', 'bot-message': message.sender === 'bot'}">
+      <p>{{message.text}}</p>
+    </div>
+  </div>
+  <div class="chat-input">
+    <input type="text" [(ngModel)]="userInput" (keydown.enter)="sendMessage()" placeholder="Type a message..." />
+    <button (click)="sendMessage()">Send</button>
+  </div>
+</div>
+<div class="chat-float-button" (click)="toggleChat()">💬</div>

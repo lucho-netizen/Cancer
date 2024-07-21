@@ -1,0 +1,271 @@
+<!--
+<div class="wrapper">
+  <link
+    rel="stylesheet"
+    href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css"
+  />
+  <div class="inner">
+    <img src="./../assets/imagenes/img.png" alt="" class="image-1" />
+
+    <form (ngSubmit)="onSubmit()">
+      <h3>Regístrese</h3>
+
+      <div class="form-holder">
+        <span class="lnr lnr-user"></span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="nombre"
+          placeholder="nombre"
+          name="nombre"
+
+          required
+        />
+      </div>
+
+      <div class="form-holder">
+        <span class="lnr lnr-users"></span>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="apellido"
+          placeholder="apellido"
+          name="apellido"
+          id="apellido"
+        />
+      </div>
+
+      <div class="form-holder">
+        <span class="lnr lnr-indent-decrease"></span>
+        <select name="tipo_documento" id="tipo_documento" class="form-control" [(ngModel)] ="tipo_documento">
+           <option value="CC">Cedula de Ciudadania</option>
+          <option value="TI">Tarjeta de Identidad</option>
+          
+        </select>
+      </div>
+
+      <div class="form-holder">
+        <span class="lnr lnr-phone-handset"></span>
+        <input
+          type="number"
+          class="form-control"
+          [(ngModel)] ="phone_number"
+          placeholder="Phone Number"
+          name="celular"
+          id="celular"
+        />
+      </div>
+
+      <div class="form-holder">
+        <span class="lnr lnr-file-add"></span>
+        <input
+          type="number"
+          class="form-control"
+          [(ngModel)]="identification"
+          placeholder=" N&uacute;mero de Identificacion"
+          name="identificacion"
+          id="identificacion"
+        />
+      </div>
+
+      <div class="form-holder">
+        <span class="lnr lnr-smile"></span>
+        <input
+          type="number"
+          class="form-control"
+          [(ngModel)] ="edad"
+          placeholder="Edad"
+          name="edad"
+          id="edad"
+        />
+      </div>
+
+      <div class="form-holder">
+        <span class="lnr lnr-heart"></span>
+        <input
+          type="nunber"
+          class="form-control"
+          [(ngModel)] ="peso"
+          placeholder="Peso"
+          name="peso"
+          id="peso"
+        />
+      </div>
+
+      <div class="form-holder">
+        <span class="lnr lnr-envelope"></span>
+        <input
+          type="email"
+          class="form-control"
+          placeholder="Correo"
+          [(ngModel)] ="correo"
+          name="correo"
+          id="correo"
+          required
+        />
+      </div>
+
+      <div class="form-holder">
+        <span class="lnr lnr-lock"></span>
+        <input
+          type="password"
+          class="form-control"
+          [(ngModel)] ="password"
+          placeholder="Contraseña"
+          id="password"
+          name="password"
+          required
+        />
+      </div>
+
+      <div class="form-holder">
+        <span class="lnr lnr-lock"></span>
+        <input
+          type="password"
+          class="form-control"
+          placeholder="Confirma Contraseña"
+          id="confirmPassword"
+          required
+        />
+      </div>
+
+    
+
+      <button type="submit">Send</button>
+
+      <div>
+        <br />
+        <p>¿Ya estás registrado?</p>
+        <a routerLink="/login">
+          <span>Sí</span>
+        </a>
+      </div>
+    </form>
+
+    <img src="./../assets/imagenes/image-2.png" alt="" class="image-2" />
+  </div>
+-->
+
+<div class="wrapper">
+  <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css" />
+  <div class="inner">
+    <img src="./../assets/imagenes/img.png" alt="" class="image-1" />
+
+    <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
+      <h3>Regístrese</h3>
+
+      <div class="form-holder">
+        <span class="lnr lnr-user"></span>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="nombre"
+          placeholder="nombre"
+        />
+      </div>
+
+      <div class="form-holder">
+        <span class="lnr lnr-users"></span>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="apellido"
+          placeholder="apellido"
+        />
+      </div>
+
+      <div class="form-holder">
+        <span class="lnr lnr-indent-decrease"></span>
+        <select formControlName="tipo_documento" class="form-control">
+          <option value="CC">Cédula de Ciudadanía</option>
+          <option value="TI">Tarjeta de Identidad</option>
+        </select>
+      </div>
+
+      <div class="form-holder">
+        <span class="lnr lnr-phone-handset"></span>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="celular"
+          placeholder="Phone Number"
+        />
+      </div>
+
+      <div class="form-holder">
+        <span class="lnr lnr-file-add"></span>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="identificacion"
+          placeholder="Número de Identificación"
+        />
+      </div>
+
+      <div class="form-holder">
+        <span class="lnr lnr-smile"></span>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="edad"
+          placeholder="Edad"
+        />
+      </div>
+
+      <div class="form-holder">
+        <span class="lnr lnr-heart"></span>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="peso"
+          placeholder="Peso"
+        />
+      </div>
+
+      <div class="form-holder">
+        <span class="lnr lnr-envelope"></span>
+        <input
+          type="email"
+          class="form-control"
+          formControlName="correo"
+          placeholder="Correo"
+        />
+      </div>
+
+      <div class="form-holder">
+        <span class="lnr lnr-lock"></span>
+        <input
+          type="password"
+          class="form-control"
+          formControlName="password"
+          placeholder="Contraseña"
+        />
+      </div>
+
+      <div class="form-holder">
+        <span class="lnr lnr-lock"></span>
+        <input
+          type="password"
+          class="form-control"
+          formControlName="confirmPassword"
+          placeholder="Confirma Contraseña"
+        />
+        <div *ngIf="addUserForm.get('confirmPassword')?.hasError('passwordMismatch')">
+          Las contraseñas no coinciden
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="addUserForm.invalid">Send</button>
+
+      <div>
+        <br />
+        <p>¿Ya estás registrado?</p>
+        <a routerLink="/login">
+          <span>Sí</span>
+        </a>
+      </div>
+    </form>
+
+    <img src="./../assets/imagenes/image-2.png" alt="" class="image-2" />
+  </div>
+</div>

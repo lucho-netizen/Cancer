@@ -1,0 +1,29 @@
+
+.mat-toolbar {
+    background-color: #accffe; /* Color de fondo del toolbar */
+    color: white; /* Color del texto */
+    padding: 10px; /* Espaciado interior */
+    height: 60px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .mat-toolbar span {
+    cursor: pointer;
+    margin-left: 59px; /* Margen izquierdo entre los elementos */
+    font-size: 1.2rem; /* Tamaño de fuente */
+    align-items: center;
+    text-align: center;
+  }
+  
+  .mat-toolbar span:hover {
+    text-decoration: none; /* Subrayado al pasar el cursor */
+    color: #31b057; /* Cambio de color al pasar el cursor */
+
+  }
+  
+  /* Estilos específicos para cada enlace si es necesario */
+  .mat-toolbar span.router-link-active {
+    font-weight: bold; /* Texto en negrita para el enlace activo */
+  }
+  
